@@ -8,15 +8,14 @@ A comprehensive Neo4j integration for Laravel, providing a complete database dri
 
 ## Features
 
-- =� **Full Laravel Integration** - Works seamlessly with Laravel's database layer
-- =� **Migration Support** - Version control your graph database schema
-- =
- **Query Builder** - Fluent interface for building Cypher queries
-- <� **Eloquent-style Models** - Familiar syntax for graph operations
-- =' **Artisan Commands** - Manage your Neo4j database from the CLI
-- <� **Schema Builder** - Create constraints and indexes programmatically
-- = **Transaction Support** - Full ACID compliance with rollback capabilities
-- =� **Performance Optimised** - Connection pooling and query caching
+- **Full Laravel Integration** - Works seamlessly with Laravel's database layer
+- **Migration Support** - Version control your graph database schema
+- **Query Builder** - Fluent interface for building Cypher queries
+- **Eloquent-style Models** - Familiar syntax for graph operations
+- **Artisan Commands** - Manage your Neo4j database from the CLI
+- **Schema Builder** - Create constraints and indexes programmatically
+- **Transaction Support** - Full ACID compliance with rollback capabilities
+- **Performance Optimised** - Connection pooling and query caching
 
 ## Requirements
 
