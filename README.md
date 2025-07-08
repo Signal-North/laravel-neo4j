@@ -10,7 +10,8 @@ A comprehensive Neo4j integration for Laravel, providing a complete database dri
 
 - =� **Full Laravel Integration** - Works seamlessly with Laravel's database layer
 - =� **Migration Support** - Version control your graph database schema
-- = **Query Builder** - Fluent interface for building Cypher queries
+- =
+ **Query Builder** - Fluent interface for building Cypher queries
 - <� **Eloquent-style Models** - Familiar syntax for graph operations
 - =' **Artisan Commands** - Manage your Neo4j database from the CLI
 - <� **Schema Builder** - Create constraints and indexes programmatically
@@ -364,4 +365,4 @@ If you discover any security related issues, please email security@signalnorth.c
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
