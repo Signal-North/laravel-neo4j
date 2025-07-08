@@ -2,7 +2,7 @@
 
 [![Latest Version](https://img.shields.io/packagist/v/signalnorth/laravel-neo4j.svg?style=flat-square)](https://packagist.org/packages/signalnorth/laravel-neo4j)
 [![Total Downloads](https://img.shields.io/packagist/dt/signalnorth/laravel-neo4j.svg?style=flat-square)](https://packagist.org/packages/signalnorth/laravel-neo4j)
-[![License](https://img.shields.io/packagist/l/signalnorth/laravel-neo4j.svg?style=flat-square)](https://packagist.org/packages/signalnorth/laravel-neo4j)
+[![License](https://img.shields.io/packagist/l/signalnorth/laravel-neo4j.svg?style=flat-square)](https://packagist.org/packages/signalnorth/laravel-neo4j/LICENCE.md)
 
 A comprehensive Neo4j integration for Laravel, providing a complete database driver with migration support, query builder, and Eloquent-style models for graph databases.
 
@@ -368,4 +368,4 @@ If you discover any security related issues, please email security@signalnorth.c
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE) for more information.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
