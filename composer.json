@@ -1,7 +1,7 @@
 {
     "name": "signalnorth/laravel-neo4j",
     "description": "Neo4j database driver for Laravel with migration support, query builder, and Eloquent-style models",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "keywords": ["laravel", "neo4j", "graph", "database", "driver", "migrations", "cypher"],
     "type": "library",
     "license": "MIT",
