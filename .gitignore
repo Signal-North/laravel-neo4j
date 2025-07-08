@@ -11,3 +11,5 @@ coverage
 *~
 .env
 .env.testing
+cc
+cc/*

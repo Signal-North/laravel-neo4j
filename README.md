@@ -20,10 +20,12 @@ A comprehensive Neo4j integration for Laravel, providing a complete database dri
 
 ## Requirements
 
-- PHP 8.1, 8.2, or 8.3
-- Laravel 10.x or 11.x
+- PHP 8.2 or 8.3
+- Laravel 12.x (fully compatible)
 - Neo4j 4.4+ or 5.0+
 - ext-bcmath and ext-sockets PHP extensions
+
+> **Note**: This package has been specifically optimized for Laravel 12 and includes all necessary compatibility updates for the latest framework features.
 
 ## Installation
 
@@ -32,6 +34,8 @@ Install the package via Composer:
 ```bash
 composer require signalnorth/laravel-neo4j
 ```
+
+> **Laravel 12 Compatibility**: This package has been specifically updated for Laravel 12 with all necessary compatibility fixes including updated grammar constructors, method signatures, and event system integration.
 
 Run the installation command:
 
