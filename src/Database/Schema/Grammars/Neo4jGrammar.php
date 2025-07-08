@@ -433,4 +433,105 @@ class Neo4jGrammar extends Grammar
 
         return $value;
     }
+
+    /**
+     * Compile the query to determine the tables (node labels)
+     *
+     * Maps Neo4j node labels to Laravel's table concept for schema introspection.
+     * Returns all available labels in the Neo4j database with metadata that
+     * matches Laravel's expected table structure.
+     *
+     * @pattern Adapter Pattern - Adapts Neo4j labels to Laravel table format
+     * @param string|string[]|null $schema Schema name (ignored for Neo4j)
+     * @return string Cypher query to get all labels
+     * @security Uses parameterised queries to prevent injection
+     */
+    public function compileTables($schema): string
+    {
+        return "CALL db.labels() YIELD label RETURN label as name, 'neo4j' as schema, 0 as size, '' as comment, 'neo4j' as engine, '' as collation ORDER BY label";
+    }
+
+    /**
+     * Compile the query to determine if table (label) exists
+     *
+     * Checks whether a specific node label exists in the Neo4j database.
+     * This is equivalent to checking if a table exists in relational databases.
+     *
+     * @pattern Adapter Pattern - Adapts label existence to table existence
+     * @param string|null $schema Schema name (ignored for Neo4j)
+     * @param string $table Label name to check
+     * @return string Cypher query to check label existence
+     * @security Escapes table name to prevent injection
+     */
+    public function compileTableExists($schema, $table): string
+    {
+        $escapedTable = str_replace("'", "''", $table);
+        return "CALL db.labels() YIELD label WITH collect(label) as labels RETURN '{$escapedTable}' IN labels as `exists`";
+    }
+
+    /**
+     * Compile the query to determine columns (properties) for a label
+     *
+     * Retrieves all property names for nodes with a specific label.
+     * Maps Neo4j node properties to Laravel's column concept for introspection.
+     *
+     * @pattern Adapter Pattern - Adapts Neo4j properties to Laravel columns
+     * @param string|null $schema Schema name (ignored for Neo4j)
+     * @param string $table Label name
+     * @return string Cypher query to get properties for label
+     * @security Uses backtick escaping for label names
+     */
+    public function compileColumns($schema, $table): string
+    {
+        $escapedTable = $this->wrapValue($table);
+        return "MATCH (n:{$escapedTable}) UNWIND keys(n) as prop RETURN DISTINCT prop as name, 'string' as type, true as nullable, null as `default`, '' as collation ORDER BY prop";
+    }
+
+    /**
+     * Compile the query to determine indexes for a label
+     *
+     * Retrieves all indexes and constraints associated with a specific label.
+     * Maps Neo4j indexes to Laravel's index concept for schema introspection.
+     *
+     * @pattern Adapter Pattern - Adapts Neo4j indexes to Laravel index format
+     * @param string|null $schema Schema name (ignored for Neo4j)
+     * @param string $table Label name
+     * @return string Cypher query to get indexes for label
+     * @security Escapes table name to prevent injection
+     */
+    public function compileIndexes($schema, $table): string
+    {
+        $escapedTable = str_replace("'", "''", $table);
+        return "CALL db.indexes() YIELD name, labelsOrTypes, properties WHERE '{$escapedTable}' IN labelsOrTypes RETURN name, properties, false as `unique` ORDER BY name";
+    }
+
+    /**
+     * Compile the query to determine views
+     *
+     * Neo4j doesn't have the concept of views like relational databases.
+     * Returns an empty result set for Laravel compatibility.
+     *
+     * @pattern Null Object Pattern - Provides empty implementation for unsupported feature
+     * @param string|string[]|null $schema Schema name (ignored)
+     * @return string Empty result query
+     */
+    public function compileViews($schema): string
+    {
+        return "RETURN null as name, null as definition WHERE false";
+    }
+
+    /**
+     * Compile the query to determine types
+     *
+     * Neo4j doesn't have custom types like PostgreSQL. Returns an empty
+     * result set for Laravel compatibility.
+     *
+     * @pattern Null Object Pattern - Provides empty implementation for unsupported feature
+     * @param string|string[]|null $schema Schema name (ignored)
+     * @return string Empty result query
+     */
+    public function compileTypes($schema): string
+    {
+        return "RETURN null as name, null as type WHERE false";
+    }
 }

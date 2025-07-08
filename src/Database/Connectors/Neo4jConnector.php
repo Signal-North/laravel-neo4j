@@ -117,11 +117,9 @@ class Neo4jConnector extends Connector implements ConnectorInterface
      */
     protected function configureConnection(ClientBuilder $builder, array $config): void
     {
-        // Set connection timeout if specified
-        if (isset($config['timeout'])) {
-            $builder->withTimeout($config['timeout']);
-        }
-
+        // Note: withTimeout() is not available in newer versions of laudis/neo4j-php-client
+        // Connection timeout should be handled via configuration driver parameters
+        
         // Set user agent if specified
         if (isset($config['user_agent'])) {
             $builder->withUserAgent($config['user_agent']);
